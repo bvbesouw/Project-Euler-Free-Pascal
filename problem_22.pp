@@ -7,7 +7,7 @@ Classes,
 SysUtils;
 
 CONST 
-  C_FNAME = '/home/bas/Documents/euler/problem_22.txt';
+  C_FNAME = 'problem_22.txt';
 
 VAR 
   names          : TStringList;
