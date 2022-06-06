@@ -6,7 +6,7 @@ USES
 math, Classes, SysUtils;
 
 CONST 
-  C_FNAME = '/home/bas/Documents/euler/problem_18.txt';
+  C_FNAME = 'problem_18.txt';
   lines = 15;
 
 VAR 
