@@ -3,7 +3,7 @@ PROGRAM problem_50;
 
 {$mode ObjFPC}{$H+}
 
-USES fgl;
+USES fgl, euler;
 
 CONST max = 1000000;
 
@@ -13,22 +13,14 @@ TYPE
 VAR 
   primes: TIntegerList;
   i,j,longest,largest,sum: longint;
-  isprime : array[2..max] OF boolean;
+  is_prime : array OF boolean;
 
 BEGIN
   primes := TIntegerList.Create;
-  FOR i := 2 TO max DO
-    isprime[i] := True;
-
-  FOR i := 2 TO max DO
-    // apply sieve
-    BEGIN
-      IF (isprime[i]) THEN
-        FOR j := 2 TO (max DIV i) DO
-          isprime[i * j] := False;
-    END;
-  FOR i := low(isprime) TO high(isprime) DO
-    IF isprime[i] THEN primes.add(i);
+  setlength(is_prime,max);
+  Sieve(is_prime);
+  FOR i := low(is_prime) TO high(is_prime) DO
+    IF is_prime[i] THEN primes.add(i);
 
   longest := 0;
   largest := 0;
@@ -39,7 +31,7 @@ BEGIN
         BEGIN
           inc(sum,primes[j]);
           IF sum > max THEN break;
-          IF (isprime[sum]) AND (j-i > longest) THEN
+          IF (is_prime[sum]) AND (j-i > longest) THEN
             BEGIN
               longest := j-i;
               largest := sum;

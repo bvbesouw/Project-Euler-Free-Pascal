@@ -1,12 +1,14 @@
 
 PROGRAM problem_3;
 
+USES euler;
+
 CONST 
   max_number = 548112;
   // sqrt(600851475143 div 2);
 
 VAR 
-  is_prime: ARRAY [2 .. max_number] OF boolean;
+  is_prime: ARRAY OF boolean;
 
 FUNCTION isprime(n: uint64): boolean;
 
@@ -32,24 +34,15 @@ BEGIN
 END;
 
 VAR 
-  lin, i, j, lcnt, max: uint64;
+  lin, lcnt, max: uint64;
 
 BEGIN
   max := 0;
   lin := 600851475143;
   lcnt := 2;
-  FOR i := 2 TO max_number DO
-    // initialize sieve;
-    is_prime[i] := True;
+  setlength(is_prime,max_number);
+  Sieve(is_prime);
 
-  FOR i := 2 TO max_number DO
-    // apply sieve
-    BEGIN
-      IF (is_prime[i]) THEN
-        FOR j := 2 TO (max_number DIV i) DO
-          is_prime[i * j] := False;
-      // mark all multiples up to n as being not prime}
-    END;
   WHILE lcnt * lcnt <= lin DO
     BEGIN
       IF lin MOD lcnt = 0 THEN

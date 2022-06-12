@@ -7,22 +7,13 @@ USES euler,sysutils;
 
 CONST max_number = 10000;
 
-VAR is_prime: ARRAY[2..max_number] OF boolean;
-  i,j,x,addnumber: integer;
+VAR is_prime: ARRAY OF boolean;
+  x,addnumber: integer;
   found : boolean;
 
 BEGIN
-  FOR i := 2 TO max_number DO
-    is_prime[i] := true;
-  //initialize sieve;
-
-  FOR i := 2 TO max_number DO
-    //apply sieve
-    BEGIN
-      IF (is_prime[i]) THEN
-        FOR j := 2 TO (max_number DIV i) DO
-          is_prime[i*j] := false;
-    END;
+  setlength(is_prime,max_number);
+  Sieve(is_prime);
 
   x := 1487;
   REPEAT

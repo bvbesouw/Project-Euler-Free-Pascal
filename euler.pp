@@ -36,6 +36,7 @@ FUNCTION sort_number(x:qword): qword;
 FUNCTION IsPandigital(s: STRING): boolean;
 FUNCTION IsPentagonal(p: uint64): boolean;
 FUNCTION IsHexagonal(p: uint64): boolean;
+PROCEDURE sieve(VAR arr: ARRAY OF boolean );
 
 IMPLEMENTATION
 
@@ -281,6 +282,21 @@ END;
 FUNCTION IsHexagonal(p: qword): boolean;
 BEGIN
   result := 0 = ((1 + sqrt(8 * p + 1)) MOD 4);
+END;
+
+PROCEDURE sieve(VAR arr: ARRAY OF boolean );
+
+VAR i,j : NativeUInt;
+
+BEGIN
+  FOR i := 2 TO high(arr) DO
+    arr[i] := True;
+  FOR i := 2 TO high(arr) DO
+    BEGIN
+      IF (arr[i]) THEN
+        FOR j := 2 TO (high(arr) DIV i) DO
+          arr[i * j] := False;
+    END;
 END;
 
 END.

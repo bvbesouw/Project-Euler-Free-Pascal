@@ -2,7 +2,7 @@
 PROGRAM problem_41;
 {$mode ObjFPC}{$H+}
 
-USES  Classes, SysUtils;
+USES  Classes, SysUtils, Euler;
 
 CONST 
   max = 7654321;
@@ -18,7 +18,7 @@ VAR
   Thing       : Array[1..255] OF tThingRec;
   EntryString : String;
   primestrs : TStringList;
-  is_prime: ARRAY[2..max] OF boolean;
+  is_prime: ARRAY OF boolean;
 
 
 PROCEDURE Permutate(num : Byte);
@@ -50,26 +50,12 @@ BEGIN
     END;
 END;
 
-PROCEDURE createSieve(max_prime : longint);
-
-VAR i,j : longint;
-BEGIN
-  FOR i := 2 TO max_prime DO
-    is_prime[i] := True;
-  FOR i := 2 TO max_prime DO
-    BEGIN
-      IF (is_prime[i]) THEN
-        FOR j := 2 TO (max_Prime DIV i) DO
-          is_prime[i * j] := False;
-    END;
-END;
-
 
 VAR i : longint;
 BEGIN
-  CreateSieve(high(is_prime));
+  setlength(is_prime,max);
+  Sieve(is_prime);
   primestrs := TStringList.Create;
-
   primestrs.sorted := true;
   primestrs.Duplicates := dupIgnore;
   FillChar(Thing,sizeof(Thing),0);
