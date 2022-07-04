@@ -2,9 +2,12 @@
 USES euler,sysutils;
 
 VAR x,y,index : longint;
-  arr         : array[0..10000] OF integer; //count occurences
-  wordarr     : array[0..10000] OF string;  //store sorted strings
-  sorted      : string;                     //sorted number
+  arr         : array[0..10000] OF integer;
+  //count occurences
+  wordarr     : array[0..10000] OF string;
+  //store sorted strings
+  sorted      : string;
+  //sorted number
   found       : boolean;
 
 BEGIN
