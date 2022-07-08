@@ -1,9 +1,11 @@
+
 PROGRAM problem_92;
 
 VAR 
   lookuptable: array[1..567] OF integer;
 
 FUNCTION SquareOfDigits(X: Dword): Dword;
+
 VAR 
   temp, sum, digit: Dword;
 
