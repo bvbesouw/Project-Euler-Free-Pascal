@@ -21,14 +21,14 @@ BEGIN
   EXCEPT
     on E: EInOutError DO
           writeln('File handling error occured. Reason: ', E.Message);
-  END;
-  FOR x := 0 TO pred(roman_numbers.count) DO
-    IF TryRomanToInt(roman_numbers[x],out_number,rcsRelaxed) THEN
-      inc(sum,length(roman_numbers[x])- length(IntToRoman(out_number)))
-    ELSE
-      BEGIN
-        writeln('couldn''t convert : ',roman_numbers[x]);
-        halt;
-      END;
-  writeln(sum);
+END;
+FOR x := 0 TO pred(roman_numbers.count) DO
+  IF TryRomanToInt(roman_numbers[x],out_number,rcsRelaxed) THEN
+    inc(sum,length(roman_numbers[x])- length(IntToRoman(out_number)))
+  ELSE
+    BEGIN
+      writeln('couldn''t convert : ',roman_numbers[x]);
+      halt;
+    END;
+writeln(sum);
 END.
