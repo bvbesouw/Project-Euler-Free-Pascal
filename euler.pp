@@ -36,7 +36,7 @@ FUNCTION sort_number(x:qword): qword;
 FUNCTION IsPandigital(s: STRING): boolean;
 FUNCTION IsPentagonal(p: uint64): boolean;
 FUNCTION IsHexagonal(p: uint64): boolean;
-PROCEDURE sieve(VAR arr: ARRAY OF boolean );
+FUNCTION GCD(a, b: Int64): Int64;
 
 IMPLEMENTATION
 
@@ -284,19 +284,21 @@ BEGIN
   result := 0 = ((1 + sqrt(8 * p + 1)) MOD 4);
 END;
 
-PROCEDURE sieve(VAR arr: ARRAY OF boolean );
-
-VAR i,j : NativeUInt;
-
+FUNCTION GCD(a, b: Int64): Int64;
 BEGIN
-  FOR i := 2 TO high(arr) DO
-    arr[i] := True;
-  FOR i := 2 TO high(arr) DO
+  // only works with positive integers
+  IF (a < 0) THEN a := -a;
+  IF (b < 0) THEN b := -b;
+  // don't enter loop, since subtracting zero won't break condition
+  IF (a = 0) THEN exit(b);
+  IF (b = 0) THEN exit(a);
+  WHILE NOT (a = b) DO
     BEGIN
-      IF (arr[i]) THEN
-        FOR j := 2 TO (high(arr) DIV i) DO
-          arr[i * j] := False;
+      IF (a > b) THEN
+        a := a - b
+      ELSE
+        b := b - a;
     END;
+  result := a;
 END;
-
 END.
