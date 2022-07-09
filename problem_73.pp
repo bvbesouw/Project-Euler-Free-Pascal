@@ -1,5 +1,5 @@
 
-PROGRAM problem_71;
+PROGRAM problem_73;
 
 USES euler;
 
