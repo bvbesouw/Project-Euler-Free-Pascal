@@ -7,6 +7,7 @@ UNIT fractions;
 
 
 
+
 { A unit for doing arithmatics with fractions
 
   Copyright (C) 2015 by Lazarus and FreePascal community
@@ -306,6 +307,7 @@ BEGIN
 
 
 
+
 {
       if PendingOverFlow then
       begin
@@ -321,6 +323,7 @@ BEGIN
   Result.Numerator := H1;
   Result.Denominator := K1;
 END;
+
 
 
 
